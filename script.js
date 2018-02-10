@@ -96,18 +96,19 @@ request.onload = function () {
   // Move same state businesses to front of array
   var sorted = []
   console.log(data)
-  if(data) {
+
     for (var i = 0; i < data.length; i++) {
       data[i].hint = ""
       if(data[i].State === localStorage.getItem("state")) {
+        console.log(data[i])
         data[i].hint = `<b><i class="c-red">Near you!</i></b>`
         sorted.push(data[i])
         data.splice(i, 1);
       }
     }
-  }
 
   data = sorted.concat(data)
+  console.log(data)
 
   // For each item
   for (var i = 0; i < length; i++) {
@@ -133,13 +134,17 @@ request.onload = function () {
       name = data[i].DbaName
     }
 
+    // Set hint
+    var hint = ""
+    if(data[i].hint) { hint = data[i].hint } else {hint = ""}
+
     // Generate item
     list += `
     ${link}
     <div class="item">
       <div class="item-text">
 
-        <span class="item-title">${name} <sup>${data[i].hint}</sup></span>
+        <span class="item-title">${name} <sup>${hint}</sup></span>
         <span class="rating">${stars}</span><br>
         <span class="item-feature">
           <a style="no-style" href="mailto:${data[i].CompanyEmail}">${data[i].CompanyEmail}</a><br>
@@ -165,7 +170,7 @@ request.onload = function () {
   }
 
   // Update count 
-  document.getElementById('count').innerHTML = data.length - 1
+  document.getElementById('count').innerHTML = data.length
 }
 
 // Helpers /////////////////////////////////////////////////////////////////////
