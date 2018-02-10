@@ -1,0 +1,11 @@
+{
+  "manifest_version": 2,
+  "name": "Vetted",
+  "version": "1",
+  "description": "Show veteran related results whenever you search Google",
+  "content_scripts": [{
+    "css": ["style.css"],
+    "js": ["script.js", "helpers.js"],
+    "matches": ["https://www.google.com/search*"]
+  }]
+}

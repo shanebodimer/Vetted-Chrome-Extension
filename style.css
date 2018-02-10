@@ -1,0 +1,8 @@
+body {
+    background: teal;
+}
+.vetted {
+    font-size: 16px;
+    background: red;
+    width: fill;
+}
