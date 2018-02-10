@@ -96,6 +96,13 @@ request.onload = function () {
       var close = "</a>"
     }
 
+    // Calculate rating
+    var rating = Math.round(data[i].Rating / 2)
+    var stars = ""
+    for (var j = 0; j < rating; j++) {
+      stars += "★"
+    }
+
     // Generate item
     list += `
     ${link}
@@ -103,6 +110,7 @@ request.onload = function () {
       <div class="item-text">
 
         <span class="item-title">${data[i].BusinessName}</span>
+        <span class="rating">${stars}</span><br>
         <span class="item-feature">
           <a style="no-style" href="mailto:${data[i].CompanyEmail}">${data[i].CompanyEmail}</a><br>
           Based in ${data[i].City}
@@ -124,7 +132,6 @@ request.onload = function () {
 
   // Update count 
   document.getElementById('count').innerHTML = data.length
-  
 }
 
 // Helpers /////////////////////////////////////////////////////////////////////
