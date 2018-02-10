@@ -34,44 +34,47 @@ small { color: #666666; }
 }
 /* Item */
 .item {
-    cursor: pointer;
     width: 100%;
-    max-width: 400px;
     height: 100px;
+    cursor: pointer;
+    max-width: 400px;
     margin-bottom: 20px;
+}
+.item:hover {
+    color: #666666;
 }
 .item-img {
     float: left;
-    height: 100px;
     width: 100px;
+    height: 100px;
     margin-right: 10px;
     background: #446CB3;
 }
 .item-text {
-    font-size: 14px;
-    width: calc(100% - 10px);
     height: 100px;
+    font-size: 14px;
+    text-align: left;
     padding-left: 10px;
     position: relative;
-    text-align: left;
+    width: calc(100% - 10px);
 }
 .item-title {
-    font-size: 18px;
-    font-weight: 700;
     display: block;
+    font-size: 16px;
+    font-weight: 700;
     margin-bottom: 5px;
 }
 .item-feature {
+    bottom: 0;
+    left: 110px;
     font-size: 12px;
     color: #666666;
     position: absolute;
-    bottom: 0;
-    left: 110px;
 }
 .divider {
-    margin-top: 5px;
     width: 40px;
     height: 3px;
+    margin-top: 5px;
     background: #DDD;
 }
 /* Loading ////////////////////////////////////////////////////////////////// */
