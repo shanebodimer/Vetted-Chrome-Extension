@@ -5,7 +5,8 @@
   "description": "Show veteran related results whenever you search Google",
   "content_scripts": [{
     "css": ["style.css"],
-    "js": ["script.js", "helpers.js"],
+    "js": ["script.js"],
     "matches": ["https://www.google.com/search*"]
-  }]
+  }],
+  "web_accessible_resources": ["logo.png"] 
 }

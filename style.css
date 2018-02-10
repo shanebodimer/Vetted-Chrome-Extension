@@ -1,8 +1,79 @@
 body {
     background: teal;
 }
-.vetted {
+hr {
+    margin-bottom: 10px;
+}
+small {
+    color: #666666;
+}
+#vetted {
     font-size: 16px;
-    background: red;
-    width: fill;
+    width: 100%;
+    padding-left: 20px;
+    border-left: 3px solid #446CB3 !important;
+}
+#vetted h1 {
+    font-weight: 500;
+    font-size: 28px;
+    color: #446CB3;
+}
+.logo {
+    height: 30px;
+}
+.results {
+    padding-top: 10px;
+}
+/* 
+.logo {
+    height: 100px;
+    width: 100%;
+    background: url("logo.png");
+    background-size: cover;
+} */
+.subtitle {
+    margin-top: 30px;
+}
+
+
+
+
+
+
+/* Loading ////////////////////////////////////////////////////////////////// */
+/* Container ---------------------------------------------------------------- */
+.spinner {
+    width: 60px;
+    height: 60px;
+    position: relative;
+  }
+  .double-bounce1, .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #446CB3;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+  }
+  .double-bounce2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+  }
+  /* Animation ---------------------------------------------------------------- */
+  @-webkit-keyframes sk-bounce {
+    0%, 100% { -webkit-transform: scale(0.0) }
+    50% { -webkit-transform: scale(1.0) }
+  }
+  @keyframes sk-bounce {
+    0%, 100% {
+      transform: scale(0.0);
+      -webkit-transform: scale(0.0);
+    } 50% {
+      transform: scale(1.0);
+      -webkit-transform: scale(1.0);
+    }
 }

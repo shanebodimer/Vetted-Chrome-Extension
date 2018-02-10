@@ -1,11 +1,28 @@
-var div = document.getElementById('rhs');
+// Place loading ///////////////////////////////////////////////////////////////
+var wrapper = document.getElementById('rhs');
+var query = decodeURIComponent(getUrlParam().q)
+var logoUrl = chrome.extension.getURL('logo.png');
 
-var search = decodeURIComponent(getUrlParam().q)
+wrapper.innerHTML = 
+  `<div id="vetted">
+    <img class="logo" src="${logoUrl}">
 
-// make api call with var search
-// format api response
+    <br>
 
-div.innerHTML = `<div class="vetted">d${search}</div>` + div.innerHTML;
+    <small>
+      0 results found for "${query}"
+    </small>
+
+    <div class="results">
+      <div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>
+    
+    </div>
+
+
+  </div><br><br><br>` + wrapper.innerHTML;
+
+
+
 
 
 
