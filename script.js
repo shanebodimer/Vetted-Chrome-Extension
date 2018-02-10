@@ -1,8 +1,14 @@
-// Place loading ///////////////////////////////////////////////////////////////
-var wrapper = document.getElementById('rhs');
-var query = decodeURIComponent(getUrlParam().q)
-var logoUrl = chrome.extension.getURL('logo.png');
+// Pre-render //////////////////////////////////////////////////////////////////
+// Select element on page to edit
+var wrapper = document.getElementById('rhs')
 
+// Find users search query and decode
+var query = decodeURIComponent(getUrlParam().q)
+
+// Find relative link to logo image
+var logoUrl = chrome.extension.getURL('logo.png')
+
+// Render //////////////////////////////////////////////////////////////////////
 wrapper.innerHTML = 
   `<div id="vetted">
     <a class="logo-link" href="vetted.shanebodimer.com" target="blank">
@@ -15,22 +21,43 @@ wrapper.innerHTML =
       0 results found for "${query}"
     </small>
 
-    <div class="results">
+    <div id="results" class="results">
       <div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>
-    
     </div>
 
+  </div>` + wrapper.innerHTML
 
-  </div><br><br><br>` + wrapper.innerHTML;
+// Fetch ///////////////////////////////////////////////////////////////////////
 
+// Render //////////////////////////////////////////////////////////////////////
+var list = ""
+for (var i = 0; i < 3; i++) {
+  list += `
+  <div class="item">
+    <div class="item-img"></div>
 
+    <div class="item-text">
+      <span class="item-title">Joe's Veteran Surplus Shop</span>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod...
+      <span class="item-feature">
+        Established 2013<br>
+        Based in St. Louis<br>
+       <div class="divider"></div>
+     </span>
+    </div>
 
+  </div>
+  `
+}
 
-
-
+console.log(list)
+//Select and update element
+var results = document.getElementById('results')
+results.innerHTML = list
 
 // Helpers /////////////////////////////////////////////////////////////////////
 // Decode URL params
+// https://www.sitepoint.com/get-url-parameters-with-javascript/
 function getUrlParam() {
     // Get url
     var url = window.location.href.replace(/\+/g, '%20')
