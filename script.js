@@ -103,13 +103,19 @@ request.onload = function () {
       stars += "★"
     }
 
+    // Get name
+    name = data[i].BusinessName
+    if(data[i].DbaName) {
+      name = data[i].DbaName
+    }
+
     // Generate item
     list += `
     ${link}
     <div class="item">
       <div class="item-text">
 
-        <span class="item-title">${data[i].BusinessName}</span>
+        <span class="item-title">${name}</span>
         <span class="rating">${stars}</span><br>
         <span class="item-feature">
           <a style="no-style" href="mailto:${data[i].CompanyEmail}">${data[i].CompanyEmail}</a><br>
