@@ -95,8 +95,7 @@ request.onload = function () {
 
   // Move same state businesses to front of array
   var sorted = []
-  console.log(data)
-
+  if(data) {
     for (var i = 0; i < data.length; i++) {
       data[i].hint = ""
       if(data[i].State === localStorage.getItem("state")) {
@@ -106,9 +105,8 @@ request.onload = function () {
         data.splice(i, 1);
       }
     }
-
-  data = sorted.concat(data)
-  console.log(data)
+    data = sorted.concat(data)
+  }
 
   // For each item
   for (var i = 0; i < length; i++) {
@@ -163,7 +161,7 @@ request.onload = function () {
   results.innerHTML = list
 
   // If no results, clear loading icon and view more
-  if(length === 0) { 
+  if(!data) { 
     results.innerHTML = ""
     var see = document.getElementById('see-more')
     see.innerHTML = ""
