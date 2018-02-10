@@ -24,6 +24,8 @@ a.no-style {
     margin-bottom: 48px;
     /* border-left: 3px solid #446CB3 !important; */
     border-radius: 2px;
+    border-top: 6px solid #446CB3 !important;
+    border-bottom: 6px solid #446CB3 !important;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 2px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 #vetted h1 {
