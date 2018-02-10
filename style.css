@@ -24,13 +24,9 @@ small {
 .results {
     padding-top: 10px;
 }
-/* 
-.logo {
-    height: 100px;
-    width: 100%;
-    background: url("logo.png");
-    background-size: cover;
-} */
+.logo-link:hover {
+    text-decoration: none !important;
+}
 .subtitle {
     margin-top: 30px;
 }

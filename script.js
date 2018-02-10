@@ -5,7 +5,9 @@ var logoUrl = chrome.extension.getURL('logo.png');
 
 wrapper.innerHTML = 
   `<div id="vetted">
-    <img class="logo" src="${logoUrl}">
+    <a class="logo-link" href="vetted.shanebodimer.com" target="blank">
+      <img class="logo" src="${logoUrl}">
+    </a>
 
     <br>
 
