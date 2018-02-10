@@ -1,3 +1,11 @@
+// Table of contents
+// Pre-render: What is happening before things happen
+// Render: What is being shown first
+// Location: Get the user's location
+// Fetch: Execute the search
+// Render: Create the list
+// Helpers: Helper functions
+
 // Pre-render //////////////////////////////////////////////////////////////////
 // Select element on page to edit
 var wrapper = document.getElementById('rhs')
@@ -11,14 +19,15 @@ var logoUrl = chrome.extension.getURL('logo.png')
 // Render //////////////////////////////////////////////////////////////////////
 wrapper.innerHTML = 
   `<div id="vetted">
-    <a class="logo-link" href="vetted.shanebodimer.com" target="blank">
+    <a class="logo-link" href="https://vetted.springlaunch.com" target="blank">
       <img class="logo" src="${logoUrl}">
     </a>
 
     <br>
-
-    <small>
-      0 results found for "${query}"
+    
+    <small class="between">
+    <span><div id="count">0</div> results found for "${query}"</span>
+    <a class="link" href="vetted.shanebodimer.com">see more results</a>
     </small>
 
     <div id="results" class="results">
@@ -27,33 +36,96 @@ wrapper.innerHTML =
 
   </div>` + wrapper.innerHTML
 
-// Fetch ///////////////////////////////////////////////////////////////////////
+// Location ////////////////////////////////////////////////////////////////////
+// If no location stored
+if(!localStorage.getItem("state")) {
 
-// Render //////////////////////////////////////////////////////////////////////
-var list = ""
-for (var i = 0; i < 3; i++) {
-  list += `
-  <div class="item">
-    <div class="item-img"></div>
+  // Get position, call function
+  navigator.geolocation.getCurrentPosition(showPosition);
 
-    <div class="item-text">
-      <span class="item-title">Joe's Veteran Surplus Shop</span>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod...
-      <span class="item-feature">
-        Established 2013<br>
-        Based in St. Louis<br>
-       <div class="divider"></div>
-     </span>
-    </div>
-
-  </div>
-  `
+  // Get state from position
+  function showPosition(position) {
+    var url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude+","+position.coords.longitude}&key=AIzaSyBWeMU1MHTGjl4QKTW7cUPZHOvXd5_zkfk`;
+    var method = "GET";
+    var shouldBeAsync = true;
+    var request = new XMLHttpRequest();
+    request.open(method, url, shouldBeAsync);
+    request.send();
+    
+    // Execute on load and store
+    request.onload = function () {
+      var data = JSON.parse(request.responseText)
+      localStorage.setItem("state", data.results[0].address_components[5].short_name)
+    }
+  }
 }
 
-console.log(list)
-//Select and update element
-var results = document.getElementById('results')
-results.innerHTML = list
+// Fetch ///////////////////////////////////////////////////////////////////////
+var url = "https://vetted.springlaunch.com/actions/search.php?query="+query;
+var method = "GET";
+var shouldBeAsync = true;
+var request = new XMLHttpRequest();
+request.open(method, url, shouldBeAsync);
+request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+request.send();
+
+// Execute on load
+request.onload = function () {
+
+  // Store responses
+  var status = request.status;
+  var data = JSON.parse(request.responseText)
+
+  // Create blank list
+  var list = ""
+
+  // Set length
+  length = 0;
+  if(data) {
+    data.length > 4 ? length = 4 : length = data.length
+  }
+
+  // For each item
+  for (var i = 0; i < length; i++) {
+
+    // Create link if provided
+    var link = `<a class="no-style">`
+    var close = "</a>"
+    if(data[i].Website) {
+      var link = `<a class="no-style" href="${data[i].Website}" target="blank">`
+      var close = "</a>"
+    }
+
+    // Generate item
+    list += `
+    ${link}
+    <div class="item">
+      <div class="item-text">
+
+        <span class="item-title">${data[i].BusinessName}</span>
+        <span class="item-feature">
+          <a style="no-style" href="mailto:${data[i].CompanyEmail}">${data[i].CompanyEmail}</a><br>
+          Based in ${data[i].City}
+          <div class="divider"></div>
+        </span>
+
+      </div>
+    </div>
+    ${close}
+    `
+  }
+
+  //Select and update results
+  var results = document.getElementById('results')
+  results.innerHTML = list
+
+  // If no results, clear loading icon
+  if(length === 0) { results.innerHTML = "" }
+
+  // Update count 
+  document.getElementById('count').innerHTML = data.length
+  
+}
 
 // Helpers /////////////////////////////////////////////////////////////////////
 // Decode URL params

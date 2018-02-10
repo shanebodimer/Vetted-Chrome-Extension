@@ -2,16 +2,23 @@
 body { background: teal; }
 hr { margin-bottom: 10px; }
 small { color: #666666; }
+a.no-style {
+    color: inherit !important;
+    text-decoration: none !important;
+}
 
 /* Vetted /////////////////////////////////////////////////////////////////// */
 /* General */
 #vetted {
     width: 100%;
+    min-width: 400px;
     margin: 1px;
     font-size: 16px;
-    padding-left: 20px;
+    padding: 16px 11px 1px 20px;
     margin-bottom: 48px;
-    border-left: 3px solid #446CB3 !important;
+    /* border-left: 3px solid #446CB3 !important; */
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 2px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 #vetted h1 {
     font-weight: 500;
@@ -21,53 +28,63 @@ small { color: #666666; }
 /* Header */
 .logo {
     height: 30px;
+    margin-bottom: 10px;
 }
 .logo-link:hover {
     text-decoration: none !important;
 }
-.subtitle {
-    margin-top: 30px;
+/* Small */
+.link { color: #446CB3 !important; }
+.link:hover,
+.link:visited,
+.link:active { color: #2f4b7d !important; }
+.between {
+    display: flex;
+    max-width: 400px;
+    justify-content: space-between;
+}
+#count {
+    display: inline;
 }
 /* Results */
 .results {
-    padding-top: 10px;
+    padding-top: 20px;
 }
 /* Item */
 .item {
+    padding: 10px;
     width: 100%;
-    height: 100px;
-    cursor: pointer;
+    height: 74px;
     max-width: 400px;
     margin-bottom: 20px;
+    border-left: 3px solid #446CB3 !important;
 }
 .item:hover {
-    color: #666666;
-}
-.item-img {
-    float: left;
-    width: 100px;
-    height: 100px;
-    margin-right: 10px;
-    background: #446CB3;
+ 
+    background: rgba(0, 0, 0, 0.05);
 }
 .item-text {
-    height: 100px;
+    height: 75px;
     font-size: 14px;
     text-align: left;
-    padding-left: 10px;
     position: relative;
     width: calc(100% - 10px);
+}
+.item-desc {
+    width: 300px;
+    height: 20px;
+    text-overflow: ellipsis;
 }
 .item-title {
     display: block;
     font-size: 16px;
     font-weight: 700;
-    margin-bottom: 5px;
+    margin-bottom: 13px;
 }
 .item-feature {
     bottom: 0;
     left: 110px;
-    font-size: 12px;
+    font-size: 12px !important;
     color: #666666;
     position: absolute;
 }
@@ -83,6 +100,7 @@ small { color: #666666; }
     width: 60px;
     height: 60px;
     position: relative;
+    margin-bottom: 20px;
 }
 .double-bounce1, .double-bounce2 {
     width: 100%;
