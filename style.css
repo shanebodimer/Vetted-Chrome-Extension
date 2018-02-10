@@ -6,6 +6,12 @@ a.no-style {
     color: inherit !important;
     text-decoration: none !important;
 }
+.c-blue {
+    color: #446CB3;
+}
+.c-red {
+    color: #b15447;
+}
 
 /* Vetted /////////////////////////////////////////////////////////////////// */
 /* General */
@@ -28,10 +34,13 @@ a.no-style {
 /* Header */
 .logo {
     height: 30px;
-    margin-bottom: 10px;
 }
 .logo-link:hover {
     text-decoration: none !important;
+}
+.logo-sub {
+    display: block;
+    margin-bottom: 10px;
 }
 /* Small */
 .link { color: #446CB3 !important; }

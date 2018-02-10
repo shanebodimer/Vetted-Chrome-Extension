@@ -22,17 +22,24 @@ wrapper.innerHTML =
     <a class="logo-link" href="https://vetted.springlaunch.com" target="blank">
       <img class="logo" src="${logoUrl}">
     </a>
-
     <br>
+    <small class="logo-sub">Veteran owned & operated businesses</small>
+
+
     
     <small class="between">
     <span><div id="count">0</div> results found for "${query}"</span>
-    <a class="link" href="vetted.shanebodimer.com">see more results</a>
+
     </small>
 
     <div id="results" class="results">
       <div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>
     </div>
+
+    <small id="see-more">
+      <a class="link" href="vetted.shanebodimer.com">see more results</a>
+      <br><br>
+    </small>
 
   </div>` + wrapper.innerHTML
 
@@ -85,6 +92,23 @@ request.onload = function () {
     data.length > 4 ? length = 4 : length = data.length
   }
 
+
+  // Move same state businesses to front of array
+  var sorted = []
+  console.log(data)
+  if(data) {
+    for (var i = 0; i < data.length; i++) {
+      data[i].hint = ""
+      if(data[i].State === localStorage.getItem("state")) {
+        data[i].hint = `<b><i class="c-red">Near you!</i></b>`
+        sorted.push(data[i])
+        data.splice(i, 1);
+      }
+    }
+  }
+
+  data = sorted.concat(data)
+
   // For each item
   for (var i = 0; i < length; i++) {
 
@@ -115,11 +139,11 @@ request.onload = function () {
     <div class="item">
       <div class="item-text">
 
-        <span class="item-title">${name}</span>
+        <span class="item-title">${name} <sup>${data[i].hint}</sup></span>
         <span class="rating">${stars}</span><br>
         <span class="item-feature">
           <a style="no-style" href="mailto:${data[i].CompanyEmail}">${data[i].CompanyEmail}</a><br>
-          Based in ${data[i].City}
+          Based in ${data[i].City}, ${data[i].State}
           <div class="divider"></div>
         </span>
 
@@ -133,11 +157,15 @@ request.onload = function () {
   var results = document.getElementById('results')
   results.innerHTML = list
 
-  // If no results, clear loading icon
-  if(length === 0) { results.innerHTML = "" }
+  // If no results, clear loading icon and view more
+  if(length === 0) { 
+    results.innerHTML = ""
+    var see = document.getElementById('see-more')
+    see.innerHTML = ""
+  }
 
   // Update count 
-  document.getElementById('count').innerHTML = data.length
+  document.getElementById('count').innerHTML = data.length - 1
 }
 
 // Helpers /////////////////////////////////////////////////////////////////////
