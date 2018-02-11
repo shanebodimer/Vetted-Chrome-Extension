@@ -19,7 +19,7 @@ var logoUrl = chrome.extension.getURL('logo.png')
 // Render //////////////////////////////////////////////////////////////////////
 wrapper.innerHTML = 
   `<div id="vetted">
-    <a class="logo-link" href="https://vetted.springlaunch.com" target="blank">
+    <a class="logo-link" href="https://springlaunch.com/vetted" target="blank">
       <img class="logo" src="${logoUrl}">
     </a>
     <br>
@@ -37,7 +37,7 @@ wrapper.innerHTML =
     </div>
 
     <small id="see-more">
-      <a class="link" href="vetted.shanebodimer.com">see more results</a>
+      <a class="link" href="https://springlaunch.com/vetted/#/search?query=${query}" target="blank">see more results</a>
       <br><br>
     </small>
 
@@ -115,7 +115,7 @@ request.onload = function () {
     var link = `<a class="no-style">`
     var close = "</a>"
     if(data[i].Website) {
-      var link = `<a class="no-style" href="${data[i].Website}" target="blank">`
+      var link = `<a class="no-style" href="https://${data[i].Website.slice(7)}" target="blank">`
       var close = "</a>"
     }
 
