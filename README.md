@@ -8,3 +8,7 @@ Makes “Buying Veteran” a habit
 - Not a single extra step
 
 1st place winner at Missouri S&T's [ShamHacks](https://shamhacks2018.devpost.com/)
+
+<p style="text-align: center;">
+![screenshot](https://raw.githubusercontent.com/shanebodimer/Vetted-ChromeExtension/master/screenshot.png)
+</p>
