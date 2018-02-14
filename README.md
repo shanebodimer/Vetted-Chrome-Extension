@@ -9,6 +9,6 @@ Makes “Buying Veteran” a habit
 
 1st place winner at Missouri S&T's [ShamHacks](https://shamhacks2018.devpost.com/)
 
-<p style="text-align: center;">
+<p align="center">
 ![screenshot](https://raw.githubusercontent.com/shanebodimer/Vetted-ChromeExtension/master/screenshot.png)
 </p>
