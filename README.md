@@ -10,5 +10,5 @@ Makes “Buying Veteran” a habit
 - Not a single extra step
 
 <p align="center">
-<img src='https://raw.githubusercontent.com/shanebodimer/Vetted-ChromeExtension/master/screenshot.png' width='300'>
+<img src='https://raw.githubusercontent.com/shanebodimer/Vetted-ChromeExtension/master/screenshot.png' width='400'>
 </p>
