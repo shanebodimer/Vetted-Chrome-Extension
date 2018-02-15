@@ -1,4 +1,4 @@
-# Vetted-ChromeExtension
+# Vetted Chrome Extension
 
 1st place winner at Missouri S&T's [ShamHacks](https://shamhacks2018.devpost.com/)
 
